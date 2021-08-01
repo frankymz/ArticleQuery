@@ -4,17 +4,22 @@ import Card from "../Components/Card/Card";
 
 export default function Everything() {
   const [input, setInput] = useState({
-    keywords: "",
-    language: "",
-    sortBy: "",
+    keywords: " ",
+    language: " ",
+    sortBy: "publishedAt",
   });
   const [news, setNews] = useState([]);
   useEffect(() => {
-    setInput({ keywords: "", language: "", sortBy: "" });
+    //setInput({ keywords: "", language: "", sortBy: "" });
   }, []);
 
   function handleSubmit() {
-    Service.testAPI().then(function (res) {
+      console.log(input)
+    Service.everythingApiRequest(
+      input.keywords,
+      input.language,
+      input.sortBy
+    ).then(function (res) {
       setNews(res.data.articles);
       console.log(res);
     });

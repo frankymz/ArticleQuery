@@ -24,7 +24,7 @@ export default function Card(props) {
           <div style={{ marginTop: "20px" }}>
             By {data.author} on {data.publishedAt}
           </div>
-          <Link to={data.url}>{data.url}</Link>
+          <a href={data.url}>{data.url}</a>
         </div>
 
         <div>
