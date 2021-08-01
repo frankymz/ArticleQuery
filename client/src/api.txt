@@ -12,11 +12,6 @@ For everything:
 
 q
 
-qInTitle
-
-from
-to
-
 language
 
 sortBy

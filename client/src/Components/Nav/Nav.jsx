@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 export default function Nav() {
   return (
@@ -27,7 +28,9 @@ export default function Nav() {
               <button>Login</button>
             </div>
           </div>
-          <div style={{ fontSize: "20px" }}>Search for the top headlines in the world</div>
+          <div style={{ fontSize: "20px" }}>
+            Search for the top headlines in the world
+          </div>
           <div
             style={{
               border: "1px solid gray",
@@ -35,7 +38,25 @@ export default function Nav() {
               justifyContent: "space-between",
             }}
           >
-            <div>Query</div>
+            <div>
+              <Link
+                to="/topheadlines"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  marginRight: "20px",
+                }}
+              >
+                Top Headlines
+              </Link>
+              <Link
+                to="/everything"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                {" "}
+                Everything{" "}
+              </Link>
+            </div>
 
             <div>Profile</div>
           </div>

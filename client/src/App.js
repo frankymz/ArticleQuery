@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Nav from "./Components/Nav/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Service from "./Service";
-import Main from "./Pages/Main";
+import Top from "./Pages/Top";
+import Everything from "./Pages/Everything";
 
 export default function App() {
   return (
@@ -10,7 +11,8 @@ export default function App() {
       <Router>
         <Nav />
         <Switch>
-          <Route exact strict path="/" component={Main} />
+          <Route exact strict path="/topheadlines" component={Top} />
+          <Route exact strict path="/everything" component={Everything} />
         </Switch>
       </Router>
     </React.Fragment>

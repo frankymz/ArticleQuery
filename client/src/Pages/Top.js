@@ -2,28 +2,26 @@ import React, { useEffect, useState } from "react";
 import Service from "../Service";
 import Card from "../Components/Card/Card";
 
-const arr = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg' ,'fr', 'gb', 'gr', 'hk',
- 'hu', 'id', 'ie', 'il', 'in' ,'it', 'jp', 'kr', 'lt',
-   'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl',
-  'pt', 'ro', 'rs', 'ru', 'sa', 'se', 'sg', 'si' ,'sk' ,'th', 'tr', 'tw', 'ua', 'us', 've', 'za']
-
-export default function Main() {
+export default function Top() {
   const [input, setInput] = useState({
-    keywords: "",
-    category: "",
-    country: "",
+    keywords: " ",
+    category: " ",
+    country: " ",
   });
 
   const [news, setNews] = useState([]);
   useEffect(() => {
-    console.log(news);
+    // setInput({ keywords: " ", category: " ", country: " " });
   }, [news]);
 
-  function test() {
-    Service.testAPI().then(function (res) {
-      setNews(res.data.articles);
-      console.log(res);
-    });
+  function handleSubmit() {
+    console.log(input)
+    Service.topApiRequest(input.keywords, input.category, input.country).then(
+      function (res) {
+        setNews(res.data.articles);
+        console.log(res);
+      }
+    );
   }
   return (
     <React.Fragment>
@@ -35,7 +33,7 @@ export default function Main() {
             <div
               style={{ textAlign: "center", fontSize: "20px", padding: "20px" }}
             >
-              Query tool
+              Search Top Headlines
             </div>
             <div
               style={{
@@ -43,7 +41,7 @@ export default function Main() {
                 maxWidth: "320px",
                 justifyContent: "space-between",
                 padding: "20px",
-                margin:"auto"
+                margin: "auto",
               }}
             >
               <div style={{ marginRight: "20px" }}>Enter Keywords:</div>
@@ -60,7 +58,7 @@ export default function Main() {
                 maxWidth: "320px",
                 justifyContent: "space-between",
                 padding: "20px",
-                margin:"auto"
+                margin: "auto",
               }}
             >
               <div style={{ marginRight: "20px" }}>Enter Category:</div>
@@ -69,7 +67,7 @@ export default function Main() {
                   setInput({ ...input, category: e.target.value })
                 }
               >
-                <option value="Category">Category</option>
+                <option value=" ">Category</option>
                 <option value="business">business</option>
                 <option value="entertainment">entertainment</option>
                 <option value="general">general</option>
@@ -84,17 +82,17 @@ export default function Main() {
                 display: "flex",
                 maxWidth: "320px",
                 justifyContent: "space-between",
-                padding: "20px", margin:"auto"
+                padding: "20px",
+                margin: "auto",
               }}
             >
-              <div style={{ marginRight: "20px"}}>Enter Country:</div>
-              <select 
+              <div style={{ marginRight: "20px" }}>Enter Country:</div>
+              <select
                 onChange={(e) =>
                   setInput({ ...input, country: e.target.value })
                 }
               >
-                
-                <option value="Country">Country</option>
+                <option value=" ">Country</option>
                 <option value="ae">United Arab Emirates</option>
                 <option value="ar">Argentina</option>
                 <option value="at">Austria</option>
@@ -117,8 +115,8 @@ export default function Main() {
                 <option value="hu">Hungary</option>
                 <option value="id">Indonesia</option>
                 <option value="ie"> Ireland</option>
-                <option value="il"> 	Israel</option>
-                <option value="in"> 	India</option>
+                <option value="il"> Israel</option>
+                <option value="in"> India</option>
                 <option value="it">Italy</option>
                 <option value="jp">Japan</option>
                 <option value="kr">Korea Republic</option>
@@ -152,10 +150,9 @@ export default function Main() {
                 <option value="za">South Africa</option>
               </select>
             </div>
-            <div style={{textAlign:"center",padding:"10px"}}>
-            <button >Search</button>
+            <div style={{ textAlign: "center", padding: "10px" }}>
+              <button onClick={handleSubmit}>Search</button>
             </div>
-            
           </div>
         </div>
       </div>
