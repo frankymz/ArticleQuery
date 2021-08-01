@@ -8,4 +8,15 @@ country= 2 letter code of the country, us
 
 category= business, entertainment, general, health, science, sports, technology
 
-sources = idk
+For everything:
+
+q
+
+qInTitle
+
+from
+to
+
+language
+
+sortBy
