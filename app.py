@@ -51,7 +51,7 @@ def authorize():
     session['email']=user_info['email']
     redirect_uri = url_for('test', _external=True)
     re = make_response(redirect(redirect_uri))
-    re.set_cookie('user', 'cookie')
+    re.set_cookie('user', user_info["name"])
     return re;
 
 
