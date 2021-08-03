@@ -1,7 +1,0 @@
-client_secret={app.config.get("FLASK_CLIENTSECRET")},
-
-
-http://localhost:5000/test/%7B'id':%20'106269530636908602082',%20'email':%20'franmazzei00@gmail.com',
-%20'verified_email':%20True,%20'name':%20'fran%20m',%20'given_name':%20'fran',%20'family_name':%20'm',
-%20'picture':%20'https://lh3.googleusercontent.com/a/AATXAJyljA2Y_Z73OHzg7kIGLS2OlP5FjkjeXVbGWeEF=s96-c',
-%20'locale':%20'en'%7D
