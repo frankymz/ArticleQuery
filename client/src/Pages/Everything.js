@@ -9,9 +9,6 @@ export default function Everything() {
     sortBy: "publishedAt",
   });
   const [news, setNews] = useState([]);
-  useEffect(() => {
-    //setInput({ keywords: "", language: "", sortBy: "" });
-  }, []);
 
   function handleSubmit() {
       console.log(input)
@@ -46,7 +43,7 @@ export default function Everything() {
               }}
             >
               <div style={{ marginRight: "20px" }}>Enter Keywords:</div>
-              <input
+              <input placeholder="Stock Market..."
                 type="text"
                 onChange={(e) =>
                   setInput({ ...input, keywords: e.target.value })

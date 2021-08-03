@@ -19,7 +19,11 @@ class Service {
   }
 
   everythingApiRequest(keywords, language, sortBy) {
-    let finalAPI = topAPI + `q=${keywords}` + `&language=${language}` + `&sortBy=${sortBy}`;
+    let finalAPI =
+      everyAPI +
+      `q=${keywords}` +
+      `&language=${language}` +
+      `&sortBy=${sortBy}`;
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,

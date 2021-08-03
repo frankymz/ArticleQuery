@@ -6,7 +6,7 @@ export default function Card(props) {
 
   return (
     <React.Fragment>
-      <div
+      <div 
         style={{
           display: "flex",
           maxWidth: "900px",
@@ -21,7 +21,7 @@ export default function Card(props) {
           </div>
           <div>{data.description}</div>
           <div>{data.content}</div>
-          <div style={{ marginTop: "20px" }}>
+          <div style={{ marginTop: "20px", fontStyle:"italic" }}>
             By {data.author} on {data.publishedAt}
           </div>
           <a href={data.url}>{data.url}</a>

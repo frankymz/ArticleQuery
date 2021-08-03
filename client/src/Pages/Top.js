@@ -10,9 +10,6 @@ export default function Top() {
   });
 
   const [news, setNews] = useState([]);
-  useEffect(() => {
-    // setInput({ keywords: " ", category: " ", country: " " });
-  }, [news]);
 
   function handleSubmit() {
     console.log(input)
@@ -47,6 +44,7 @@ export default function Top() {
               <div style={{ marginRight: "20px" }}>Enter Keywords:</div>
               <input
                 type="text"
+                placeholder="Tesla..."
                 onChange={(e) =>
                   setInput({ ...input, keywords: e.target.value })
                 }

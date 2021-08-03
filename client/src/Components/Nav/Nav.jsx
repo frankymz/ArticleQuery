@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 export default function Nav() {
   return (
     <React.Fragment>
-      <div
+      <div className="font"
         style={{
           margin: "auto",
           justifyContent: "center",
           display: "flex",
           maxWidth: "900px",
+          cursor:"default"
         }}
       >
         <div style={{ maxWidth: "1000px", width: "100%" }}>
@@ -29,7 +30,7 @@ export default function Nav() {
             </div>
           </div>
           <div style={{ fontSize: "20px" }}>
-            Search for the top headlines in the world
+            Search for the top headlines anywhere in the world
           </div>
           <div
             style={{
@@ -39,6 +40,14 @@ export default function Nav() {
             }}
           >
             <div>
+            <Link
+                to="/"
+                style={{
+                  textDecoration: "none",
+                  color: "white",
+                  marginRight: "20px",
+                }}
+              > Home </Link>
               <Link
                 to="/topheadlines"
                 style={{

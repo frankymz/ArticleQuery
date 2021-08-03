@@ -1,69 +1,56 @@
-from flask import Flask, render_template, redirect, url_for
-from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm 
-from wtforms import StringField, PasswordField, BooleanField
-from wtforms.validators import InputRequired, Email, Length
-from flask_sqlalchemy  import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-import sqlite3
+from flask import Flask, url_for, redirect, session
+from authlib.integrations.flask_client import OAuth
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Thisissupposedtobesecret!'
-#db = sqlite3.connect('data.db')
-app.config['SQLALCHEMY_DATABASE_URI'] = r'sqlite:////C:\Users\franm\Documents\VS Projects\Articles\app\data.db'
-Bootstrap(app)
-db = SQLAlchemy(app)
-#db = sqlite3.connect('database.db')
+app.secret_key ='random secret'
 
-
-
-class User(db.Model, UserMixin ):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(15), unique=True)
-    email = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(80))
-
-class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
-    remember = BooleanField('remember me')
-
-class RegisterForm(FlaskForm):
-    email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
-    username = PasswordField('password', validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+oauth = OAuth(app)
+google = oauth.register(
+    name='google',
+    client_id='842117041606-br1r0osugcosh00ed132mhi429r14grv.apps.googleusercontent.com',
+    client_secret='ZwKkbEPs06MqkJ0RayKzZWGO',
+    access_token_url='https://accounts.google.com/o/oauth2/token',
+    access_token_params=None,
+    authorize_url='https://accounts.google.com/o/oauth2/auth',
+    authorize_params=None,
+    api_base_url='https://www.googleapis.com/oauth2/v1/',
+    userinfo_endpoint='',  # This is only needed if using openId to fetch user info
+    client_kwargs={'scope': 'openid email profile'},
+)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+# @login_required for routes that need protection, so you must be logged in
+def hello_world():
+    email = dict(session).get('email', None)
+    #return redirect("http://localhost:3000")
+    #return redirect(url_for('test'))
+    return f'Hello, you are logge in as {email}!'
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login')
 def login():
-    form = LoginForm()
+    google = oauth.create_client('google')
+    redirect_uri = url_for('authorize', _external=True)
+    return google.authorize_redirect(redirect_uri)
 
-    if form.validate_on_submit():
-        return '<h1>' + form.username.data + ' ' + form.password.data + '</h1>'
+@app.route('/authorize')
+def authorize():
+    google = oauth.create_client('google')
+    token = google.authorize_access_token()
+    resp = google.get('userinfo')
+    # resp.raise_for_status()
+    user_info = resp.json()
+    # do something with the token and profile
+    #user = oauth.google.userinfo()  # uses openid endpoint to fetch user info
+    session['email']=user_info['email']
+    redirect_uri = url_for('test', _external=True)
+    return redirect(redirect_uri)
 
-    return render_template('login.html', form=form)
+@app.route('/test')
+def test():
+    return redirect("http://localhost:3000")
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    form = RegisterForm()
-
-    if form.validate_on_submit():
-        new_user = User(username=form.username.data, email=form.email.data, password=form.password.data)
-        db.session(new_user)
-        db.session.commit()
-
-        return '<h1>new user has ben created</h1>'
-        #return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
-
-    return render_template('signup.html', form=form)
-
-@app.route('/dashboard')
-def dashboard():
-    return render_template('dashboard.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route('/logout')
+def logout():
+    for key in list(session.keys()):
+        session.pop(key)
+    return redirect('/')
