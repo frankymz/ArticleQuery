@@ -2,6 +2,8 @@ from flask import Flask, url_for, redirect, session
 from authlib.integrations.flask_client import OAuth
 import logging
 
+from flask.helpers import make_response
+
 app = Flask(__name__)
 app.config.from_pyfile('settings.py')
 app.secret_key = "randomsecret-0"
@@ -37,7 +39,7 @@ def login():
     return google.authorize_redirect(redirect_uri)
 
 
-@app.route('/authorize')
+@app.route('/authorize', methods=['POST', 'GET'])
 def authorize():
     google = oauth.create_client('google')
     token = google.authorize_access_token()
@@ -48,7 +50,9 @@ def authorize():
     # user = oauth.google.userinfo()  # uses openid endpoint to fetch user info
     session['email']=user_info['email']
     redirect_uri = url_for('test', _external=True)
-    return redirect(redirect_uri)
+    re = make_response(redirect(redirect_uri))
+    re.set_cookie('user', 'cookie')
+    return re;
 
 
 @app.route('/test')
