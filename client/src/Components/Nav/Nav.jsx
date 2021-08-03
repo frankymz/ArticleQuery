@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 export default function Nav() {
   return (
     <React.Fragment>
-      <div className="font"
+      <div
+        className="font"
         style={{
           margin: "auto",
           justifyContent: "center",
           display: "flex",
           maxWidth: "900px",
-          cursor:"default"
+          cursor: "default",
         }}
       >
         <div style={{ maxWidth: "1000px", width: "100%" }}>
@@ -26,7 +27,12 @@ export default function Nav() {
           >
             <div style={{ fontSize: "30px" }}>Article Query</div>
             <div>
-              <button>Login</button>
+              <a href="http://localhost:5000/login">
+                <button>Login</button>
+              </a>
+              <a href="http://localhost:5000/logout">
+                <button>Logout</button>
+              </a>
             </div>
           </div>
           <div style={{ fontSize: "20px" }}>
@@ -40,14 +46,17 @@ export default function Nav() {
             }}
           >
             <div>
-            <Link
+              <Link
                 to="/"
                 style={{
                   textDecoration: "none",
                   color: "white",
                   marginRight: "20px",
                 }}
-              > Home </Link>
+              >
+                {" "}
+                Home{" "}
+              </Link>
               <Link
                 to="/topheadlines"
                 style={{

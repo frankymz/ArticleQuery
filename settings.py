@@ -1,5 +1,5 @@
 from os import environ
 
-FLASK_client_secret = environ.get('FLASK_client_secret')
-FLASK_client_id = environ.get('FLASK_client_id')
+FLASK_CLIENTSECRET = environ.get('FLASK_CLIENTSECRET')
+FLASK_CLIENTID = environ.get('FLASK_CLIENTID')
 FLASK_SECRET = environ.get('FLASK_SECRET')
