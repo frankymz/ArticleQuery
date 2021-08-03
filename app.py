@@ -60,4 +60,5 @@ def test():
 def logout():
     for key in list(session.keys()):
         session.pop(key)
-    return redirect('/')
+    redirect_uri = url_for('test', _external=True)
+    return redirect(redirect_uri)
