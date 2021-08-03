@@ -6,13 +6,13 @@ from flask.helpers import make_response
 
 app = Flask(__name__)
 app.config.from_pyfile('settings.py')
-app.secret_key = "randomsecret-0"
+app.secret_key = f'{app.config.get("FLASK_SECRET")}'
 
 oauth = OAuth(app)
 google = oauth.register(
     name='google',
-    client_id="842117041606-br1r0osugcosh00ed132mhi429r14grv.apps.googleusercontent.com",
-    client_secret="ZwKkbEPs06MqkJ0RayKzZWGO",
+    client_id=f'{app.config.get("FLASK_CLIENTID")}',
+    client_secret=f'{app.config.get("FLASK_CLIENTSECRET")}',
     access_token_url='https://accounts.google.com/o/oauth2/token',
     access_token_params=None,
     authorize_url='https://accounts.google.com/o/oauth2/auth',
