@@ -31,12 +31,19 @@ export default function Nav() {
                 <button>Login</button>
               </a>
               <a href="http://localhost:5000/logout">
-                <button>Logout</button>
+                <button
+                  onClick={() => {
+                    document.cookie =
+                      "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                  }}
+                >
+                  Logout
+                </button>
               </a>
             </div>
           </div>
           <div style={{ fontSize: "20px" }}>
-            Search for the top headlines anywhere in the world
+            Search for unfiltered articles from anywhere in the world
           </div>
           <div
             style={{
@@ -50,7 +57,7 @@ export default function Nav() {
                 to="/"
                 style={{
                   textDecoration: "none",
-                  color: "white",
+                  color: "black",
                   marginRight: "20px",
                 }}
               >
@@ -61,7 +68,7 @@ export default function Nav() {
                 to="/topheadlines"
                 style={{
                   textDecoration: "none",
-                  color: "white",
+                  color: "black",
                   marginRight: "20px",
                 }}
               >
@@ -69,14 +76,19 @@ export default function Nav() {
               </Link>
               <Link
                 to="/everything"
-                style={{ textDecoration: "none", color: "white" }}
+                style={{ textDecoration: "none", color: "black" }}
               >
                 {" "}
                 Everything{" "}
               </Link>
             </div>
 
-            <div>Profile</div>
+            <Link
+              to="/profile"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              Profile
+            </Link>
           </div>
         </div>
       </div>
