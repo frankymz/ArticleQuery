@@ -14,10 +14,6 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
-        "Access-Control-Allow-Credentials": "True",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-        "Access-Control-Allow-Origin": "*",
       },
     });
   }
@@ -31,10 +27,6 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
-        "Access-Control-Allow-Credentials": "True",
-        "Access-Control-Allow-Headers": "Content-Type",
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-        "Access-Control-Allow-Origin": "*",
       },
     });
   }
