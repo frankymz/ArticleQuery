@@ -14,6 +14,7 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
+        
       },
     });
   }
@@ -27,6 +28,7 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
+        
       },
     });
   }
