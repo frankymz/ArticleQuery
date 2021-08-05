@@ -14,7 +14,9 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
-        
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Origin': 'https://master.dnx0msww8jf5h.amplifyapp.com/'
       },
     });
   }
@@ -28,7 +30,9 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
-        
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Origin': 'https://master.dnx0msww8jf5h.amplifyapp.com/'
       },
     });
   }
