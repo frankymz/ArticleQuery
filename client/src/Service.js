@@ -27,8 +27,6 @@ class Service {
       `&language=${language}` +
       `&sortBy=${sortBy}`;
     return axios.get(finalAPI, {
-      method:'GET',
-      crossdomain:true,
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
         'Content-Type': 'application/json',
