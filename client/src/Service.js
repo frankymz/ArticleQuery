@@ -3,6 +3,12 @@ import axios from "axios";
 const topAPI = `https://newsapi.org/v2/top-headlines?`;
 const everyAPI = `https://newsapi.org/v2/everything?`;
 
+const corsHeaders = {
+  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Methods": "GET",
+  "Access-Control-Allow-Origin": "*",
+};
+
 class Service {
   topApiRequest(keywords, category, country) {
     let finalAPI =
@@ -20,7 +26,7 @@ class Service {
     });
   }
 
-  everythingApiRequest(keywords, language, sortBy) {
+  async everythingApiRequest(keywords, language, sortBy) {
     let finalAPI =
       everyAPI +
       `q=${keywords}` +
@@ -29,8 +35,8 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
-        // 'Content-Type': 'application/json',
-        // 'Accept': 'application/json'
+        "Content-Type": "application/json",
+        ...corsHeaders,
       },
     });
   }
