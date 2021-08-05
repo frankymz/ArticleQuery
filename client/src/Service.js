@@ -15,8 +15,7 @@ class Service {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Origin': 'https://master.dnx0msww8jf5h.amplifyapp.com/'
+        'Accept': 'application/json'
       },
     });
   }
@@ -28,11 +27,12 @@ class Service {
       `&language=${language}` +
       `&sortBy=${sortBy}`;
     return axios.get(finalAPI, {
+      method:'GET',
+      crossdomain:true,
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Origin': 'https://master.dnx0msww8jf5h.amplifyapp.com/'
+        'Accept': 'application/json'
       },
     });
   }
