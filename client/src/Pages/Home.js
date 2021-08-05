@@ -3,6 +3,12 @@ import Service from "../Service";
 import Card from "../Components/Card/Card";
 import "./Pages.css";
 
+const corsHeaders = {
+  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Methods": "GET",
+  "Access-Control-Allow-Origin": "*",
+};
+
 export default function Home() {
   const [keyword, setKeyword] = useState("bitcoin");
   const [news, setNews] = useState([]);
@@ -15,7 +21,9 @@ export default function Home() {
     Service.everythingApiRequest(keyword, "en", "popularity").then(function (
       res
     ) {
-      
+      if (res.method === "OPTIONS") {
+        return new Response("OK", { headers: corsHeaders });
+      }
       console.log(res.method);
       setNews(res.data.articles);
     });
