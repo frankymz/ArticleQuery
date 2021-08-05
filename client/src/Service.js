@@ -14,8 +14,8 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        // 'Content-Type': 'application/json',
+        // 'Accept': 'application/json'
       },
     });
   }
@@ -29,8 +29,8 @@ class Service {
     return axios.get(finalAPI, {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        // 'Content-Type': 'application/json',
+        // 'Accept': 'application/json'
       },
     });
   }
