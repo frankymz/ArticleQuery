@@ -15,7 +15,8 @@ export default function Home() {
     Service.everythingApiRequest(keyword, "en", "popularity").then(function (
       res
     ) {
-      console.log(res);
+      
+      console.log(res.method);
       setNews(res.data.articles);
     });
   }

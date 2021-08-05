@@ -36,9 +36,8 @@ class Service {
       headers: {
         Authorization: `${process.env.REACT_APP_APIKEY}`,
         "Content-Type": "application/json",
-        ...corsHeaders,
       },
-    });
+    })
   }
 }
 
