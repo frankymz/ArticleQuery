@@ -1,12 +1,14 @@
 from flask import Flask, url_for, redirect, session
 from authlib.integrations.flask_client import OAuth
 import logging
+from flask_cors import CORS
 
 from flask.helpers import make_response
 
 application = Flask(__name__)
 application.config.from_pyfile('settings.py')
 application.secret_key = f'{application.config.get("FLASK_SECRET")}'
+CORS(application)
 
 oauth = OAuth(application)
 google = oauth.register(
@@ -27,7 +29,7 @@ google = oauth.register(
 # @login_required for routes that need protection, so you must be logged in
 def hello_world():
     email = dict(session).get('email', None)
-    return f'Email in as {email} and  {application.config.get("FLASK_CLIENTID")}!'
+    return f'Email in as {email}!'
 
 
 @application.route('/login')
