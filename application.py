@@ -24,7 +24,6 @@ google = oauth.register(
 
 
 @application.route('/')
-# @login_required for routes that need protection, so you must be logged in
 def hello_world():
     email = dict(session).get('email', None)
     return f'Email in as {email}!'
@@ -37,8 +36,8 @@ def login():
     return google.authorize_redirect(redirect_uri)
 
 
-@application.route('/authorize', methods=['POST', 'GET'])
-def authorize():
+@application.route('/authorize', methods=['POST', 'GET', 'OPTIONS'])
+def authorize():  
     google = oauth.create_client('google')
     token = google.authorize_access_token()
     resp = google.get('userinfo')
@@ -53,12 +52,11 @@ def authorize():
 
 @application.route('/test')
 def test():
-    return redirect("http://master.dnx0msww8jf5h.amplifyapp.com/")
+    return redirect("https://master.d3n8geuxmem1o4.amplifyapp.com/")
 
 
 @application.route('/logout')
 def logout():
-    session.pop('user', None)
     for key in list(session.keys()):
         session.pop(key)
     redirect_uri = url_for('test', _external=True)
