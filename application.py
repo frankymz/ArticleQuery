@@ -55,7 +55,7 @@ def authorize():
 
 @application.route('/test')
 def test():
-    return redirect("https://master.dnx0msww8jf5h.amplifyapp.com")
+    return redirect("http://master.dnx0msww8jf5h.amplifyapp.com")
 
 
 @application.route('/logout')
