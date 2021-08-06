@@ -27,10 +27,10 @@ export default function Nav() {
           >
             <div style={{ fontSize: "30px" }}>Article Query</div>
             <div>
-              <a href="https://authflask-env.eba-vfm9mhbd.us-east-2.elasticbeanstalk.com/login">
+              <a href="http://authflask-env.eba-vfm9mhbd.us-east-2.elasticbeanstalk.com/login">
                 <button>Login</button>
               </a>
-              <a href="https://authflask-env.eba-vfm9mhbd.us-east-2.elasticbeanstalk.com/logout">
+              <a href="http://authflask-env.eba-vfm9mhbd.us-east-2.elasticbeanstalk.com/logout">
                 <button
                   onClick={() => {
                     document.cookie =
