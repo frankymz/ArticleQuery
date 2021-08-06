@@ -3,7 +3,7 @@ import React from "react";
 export default function Profile() {
   return (
     <React.Fragment>
-      <div>Profile</div>
+      <div>Profilee</div>
     </React.Fragment>
   );
 }
