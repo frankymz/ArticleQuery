@@ -83,12 +83,12 @@ export default function Nav() {
               </Link>
             </div>
 
-            <Link
+            {/* <Link
               to="/profile"
               style={{ textDecoration: "none", color: "black" }}
             >
-              Profile
-            </Link>
+              
+            </Link> */}
           </div>
         </div>
       </div>
