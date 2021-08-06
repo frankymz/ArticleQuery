@@ -27,7 +27,7 @@ google = oauth.register(
 # @login_required for routes that need protection, so you must be logged in
 def hello_world():
     email = dict(session).get('email', None)
-    return f'Email in as {email} and {application.config.get("FLASK_SECRET")} and {application.config.get("FLASK_CLIENTSECRET")} and  {application.config.get("FLASK_CLIENTID")}!'
+    return f'Email in as {email} and  {application.config.get("FLASK_CLIENTID")}!'
 
 
 @application.route('/login')
