@@ -42,14 +42,12 @@ def authorize():
     google = oauth.create_client('google')
     token = google.authorize_access_token()
     resp = google.get('userinfo')
-    # resp.raise_for_status()
     user_info = resp.json()
-    # do something with the token and profile
-    # user = oauth.google.userinfo()  # uses openid endpoint to fetch user info
     session['email']=user_info['email']
     redirect_uri = url_for('test', _external=True)
     re = make_response(redirect(redirect_uri))
     re.set_cookie('user', user_info["name"])
+    session['user'] = user_info["name"]
     return re;
 
 
@@ -60,6 +58,7 @@ def test():
 
 @application.route('/logout')
 def logout():
+    session.pop('user', None)
     for key in list(session.keys()):
         session.pop(key)
     redirect_uri = url_for('test', _external=True)
