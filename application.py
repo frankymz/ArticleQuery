@@ -27,7 +27,7 @@ google = oauth.register(
 @application.route('/')
 def hello_world():
     email = dict(session).get('email', None)
-    return f'Email in as {email}!'
+    return f'Email, in as {email}!'
 
 
 @application.route('/login')
@@ -47,13 +47,12 @@ def authorize():
     redirect_uri = url_for('test', _external=True)
     re = make_response(redirect(redirect_uri))
     re.set_cookie('user', user_info["name"])
-    session['user'] = user_info["name"]
     return re;
 
 
 @application.route('/test')
 def test():
-    return redirect("https://master.d3n8geuxmem1o4.amplifyapp.com/")
+    return redirect("http://localhost:3000")
 
 
 @application.route('/logout')
@@ -62,3 +61,6 @@ def logout():
         session.pop(key)
     redirect_uri = url_for('test', _external=True)
     return redirect(redirect_uri)
+
+if __name__ == '__main__':
+    application.run(debug=True, host='0.0.0.0')
