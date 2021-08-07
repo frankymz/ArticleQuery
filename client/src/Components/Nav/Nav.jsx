@@ -27,10 +27,10 @@ export default function Nav() {
           >
             <div style={{ fontSize: "30px" }}>Article Query</div>
             <div>
-              <a href="http://localhost:5000/login">
+              <a href="http://localhost:85/login">
                 <button>Login</button>
               </a>
-              <a href="http://localhost:5000/logout">
+              <a href="http://localhost:85/logout">
                 <button
                   onClick={() => {
                     document.cookie =

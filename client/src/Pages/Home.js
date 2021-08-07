@@ -29,6 +29,18 @@ export default function Home() {
     });
   }
 
+  // const [test, setTest] = useState([])
+  // const url = '/api'
+
+  // useEffect(() => {
+  //   fetch(url).then(response => {
+  //     if(response.status==200){
+  //       return response.json()
+  //     }
+  //   }).then(data=>setTest(data))
+    
+  // }, [])
+  // console.log('test state',test)
   return (
     <React.Fragment>
       <div

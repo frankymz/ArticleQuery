@@ -23,11 +23,18 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile'},
 )
 
+@application.route('/api', methods=['GET'])
+def api():
+    return {
+        "test": "res1",
+        "test2": "res2"
+    }
+
 
 @application.route('/')
 def hello_world():
     email = dict(session).get('email', None)
-    return f'Email, in as {email}!'
+    return f'Email in as- {email}!'
 
 
 @application.route('/login')
