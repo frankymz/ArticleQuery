@@ -6,17 +6,39 @@ import Top from "./Pages/Top";
 import Everything from "./Pages/Everything";
 import Home from "./Pages/Home";
 import Profile from "./Components/Profile/Profile";
+import Cookies from "js-cookie";
 
 export default function App() {
+  const [cookie, setCookie] = useState({
+    auth: false,
+    user: "",
+  });
+
+  useEffect(() => {
+    if (Cookies.get("user") !== undefined) {
+      setCookie({
+        auth: true,
+        user: Cookies.get("user"),
+      });
+    }
+  }, []);
   return (
     <React.Fragment>
       <Router>
-        <Nav />
+        <Nav auth={cookie}/>
         <Switch>
-          <Route exact strict path="/" component={Home} />
-          <Route exact strict path="/topheadlines" component={Top} />
-          <Route exact strict path="/everything" component={Everything} />
-          <Route exact strict path='/profile' component={Profile}/>
+          <Route exact strict path="/">
+            <Home auth={cookie} />
+          </Route>
+          <Route exact strict path="/topheadlines">
+            <Top auth={cookie} />
+          </Route>
+          <Route exact strict path="/everything">
+            <Everything auth={cookie} />
+          </Route>
+          <Route exact strict path="/profile">
+            <Profile auth={cookie} />
+          </Route>
         </Switch>
       </Router>
     </React.Fragment>

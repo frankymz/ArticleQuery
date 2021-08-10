@@ -3,16 +3,20 @@ import Service from "../Service";
 import Card from "../Components/Card/Card";
 import "./Pages.css";
 
+
 const corsHeaders = {
   "Access-Control-Allow-Headers": "*",
   "Access-Control-Allow-Methods": "GET",
   "Access-Control-Allow-Origin": "*",
 };
 
-export default function Home() {
+export default function Home(props) {
   const [keyword, setKeyword] = useState("bitcoin");
   const [news, setNews] = useState([]);
-
+  const auth = props.auth;
+  // variables auth: boolean
+  // and user: ''
+  
   useEffect(() => {
     handleSubmit();
   }, []);
@@ -24,13 +28,13 @@ export default function Home() {
       if (res.method === "OPTIONS") {
         return new Response("OK", { headers: corsHeaders });
       }
-      console.log(res.method);
       setNews(res.data.articles);
     });
   }
 
   return (
     <React.Fragment>
+      
       <div
         style={{ margin: "auto", display: "flex", justifyContent: "center" }}
       >
