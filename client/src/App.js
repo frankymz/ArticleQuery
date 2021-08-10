@@ -6,7 +6,7 @@ import Top from "./Pages/Top";
 import Everything from "./Pages/Everything";
 import Home from "./Pages/Home";
 import Profile from "./Components/Profile/Profile";
-import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 
 export default function App() {
   const [cookie, setCookie] = useState({
