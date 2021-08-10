@@ -24,7 +24,6 @@ export default function Home() {
       if (res.method === "OPTIONS") {
         return new Response("OK", { headers: corsHeaders });
       }
-      console.log(res.method);
       setNews(res.data.articles);
     });
   }

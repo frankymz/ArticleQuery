@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
-export default function Nav() {
+export default function Nav(props) {
+  const auth = props.auth;
   return (
     <React.Fragment>
       <div
@@ -27,19 +28,22 @@ export default function Nav() {
           >
             <div style={{ fontSize: "30px" }}>Article Query</div>
             <div>
-              <a href="http://localhost:85/login">
-                <button>Login</button>
-              </a>
-              <a href="http://localhost:85/logout">
-                <button
-                  onClick={() => {
-                    document.cookie =
-                      "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                  }}
-                >
-                  Logout
-                </button>
-              </a>
+              {auth.auth ? (
+                <a href="http://localhost:85/logout">
+                  <button
+                    onClick={() => {
+                      document.cookie =
+                        "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                    }}
+                  >
+                    Logout
+                  </button>
+                </a>
+              ) : (
+                <a href="http://localhost:85/login">
+                  <button>Login</button>
+                </a>
+              )}
             </div>
           </div>
           <div style={{ fontSize: "20px" }}>
