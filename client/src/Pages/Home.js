@@ -21,9 +21,6 @@ export default function Home() {
     Service.everythingApiRequest(keyword, "en", "popularity").then(function (
       res
     ) {
-      if (res.method === "OPTIONS") {
-        return new Response("OK", { headers: corsHeaders });
-      }
       console.log(res.method);
       setNews(res.data.articles);
     });
