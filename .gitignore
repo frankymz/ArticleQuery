@@ -1,3 +1,4 @@
 /.git
 gar
 /backend
+.env
