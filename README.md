@@ -1,5 +1,5 @@
 # articlequery
-Query articles. Flask and React.js.
+Flask authoriztion is in application.py and the rest is mostly the client side. The screenshots below show the AWS developments.
 
 ## Elastic Beanstalk server
 
