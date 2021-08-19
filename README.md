@@ -1,5 +1,5 @@
 # articlequery
-Flask authoriztion is in application.py and the rest is mostly the client side. The screenshots below show the AWS developments.
+Flask authoriztion is in application.py and the src folder is the client side. The screenshots below show the AWS and Docker developments.
 
 ## Elastic Beanstalk server
 
